@@ -6,7 +6,7 @@ import java.util.BitSet;
 /**
  * @author Artur Vasilov
  */
-public class VectorData {
+public class Vector {
 
     public final BitSet vector;
     public final long position;
@@ -15,7 +15,7 @@ public class VectorData {
     public BigInteger x;
     public BigInteger y;
 
-    public VectorData(BitSet vector, long position) {
+    public Vector(BitSet vector, long position) {
         this.vector = vector;
         this.position = position;
     }

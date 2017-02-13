@@ -18,7 +18,7 @@ public class Wheel {
         this.prime = prime.intValue();
         log = Math.log(this.prime);
 
-        long[] flats = MathUtils.ressol(this.prime, target);
+        long[] flats = ShanksTonelli.calculate(this.prime, target);
 
         int solutions =  0;
         for (long flat : flats) {

@@ -1,5 +1,6 @@
 package lab.factor.quadraticsieve;
 
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -7,18 +8,29 @@ import java.util.*;
  */
 public class BitMatrix {
 
+    private final BigInteger number;
+    private final BigInteger squareRoot;
+    public int bigPrimesIndex;
+
     private BitSet rows[];
     private BitSet solutionRows[];
-    private List<VectorData> vectorDatas;
+    private List<Vector> vectors;
 
-    public List<List<VectorData>> solve(List<VectorData> vectorDatas) {
-        this.vectorDatas = vectorDatas;
+    public BitMatrix(BigInteger number, BigInteger root, int biggestPrimeIndex) {
+        this.number = number;
+        this.squareRoot = root;
+        this.bigPrimesIndex = biggestPrimeIndex;
+    }
+
+    public List<List<Vector>> solve(List<Vector> bSmoothVectors, BigPrimesList bigPrimesList) {
+        List<Vector> vectors = shrink(bSmoothVectors, bigPrimesList);
+        this.vectors = vectors;
 
         Map<Integer, Object> map = new HashMap<>();
-        rows = new BitSet[vectorDatas.size()];
-        solutionRows = new BitSet[vectorDatas.size()];
+        rows = new BitSet[vectors.size()];
+        solutionRows = new BitSet[vectors.size()];
         for (int i = 0; i < rows.length; i++) {
-            rows[i] = vectorDatas.get(i).vector;
+            rows[i] = vectors.get(i).vector;
             solutionRows[i] = new BitSet();
             solutionRows[i].set(i);
         }
@@ -46,7 +58,7 @@ public class BitMatrix {
             }
         }
 
-        List<List<VectorData>> solutions = new ArrayList<>();
+        List<List<Vector>> solutions = new ArrayList<>();
         for (int i = 0; i < rows.length; i++) {
             if (rows[i].isEmpty()) {
                 solutions.add(createSolution(i));
@@ -56,11 +68,11 @@ public class BitMatrix {
         return solutions;
     }
 
-    private List<VectorData> createSolution(int row) {
-        List<VectorData> solution = new ArrayList<>();
+    private List<Vector> createSolution(int row) {
+        List<Vector> solution = new ArrayList<>();
         for (int column = 0; column < rows.length; column++) {
             if (solutionRows[row].get(column)) {
-                solution.add(vectorDatas.get(column));
+                solution.add(vectors.get(column));
             }
         }
         return solution;
@@ -69,5 +81,65 @@ public class BitMatrix {
     private void xor(int rowA, int rowB) {
         rows[rowA].xor(rows[rowB]);
         solutionRows[rowA].xor(solutionRows[rowB]);
+    }
+
+    private List<Vector> shrink(List<Vector> bSmoothVectors, BigPrimesList bigPrimesList) {
+        bSmoothVectors = new ArrayList<>(bSmoothVectors);
+        List<List<Vector>> bigPrimes = bigPrimesList.getBigPrimes();
+
+        for (int i = bigPrimes.size() - 1; i >= 0; i--) {
+            List<Vector> vectors = bigPrimes.get(i);
+            if (vectors.size() == 2) {
+                bigPrimes.remove(i);
+                Vector vector = vectors.get(0);
+                merge(vector, vectors.get(1));
+                bSmoothVectors.add(vector);
+            }
+        }
+
+        for (List<Vector> bigPrimeList : bigPrimes) {
+            boolean updateIndex = false;
+            boolean firstVector = true;
+            int bigPrimeIndex = -1;
+
+            for (Vector vector : bigPrimeList) {
+                if (firstVector && vector.bigPrimeIndex == -1) {
+                    firstVector = false;
+                    updateIndex = true;
+                }
+                if (vector.bigPrimeIndex == -1) {
+                    if (bigPrimeIndex == -1) {
+                        bigPrimeIndex = this.bigPrimesIndex;
+                    }
+                    vector.bigPrimeIndex = bigPrimeIndex;
+                    vector.vector.set(bigPrimeIndex);
+                }
+                else {
+                    bigPrimeIndex = vector.bigPrimeIndex;
+                }
+                bSmoothVectors.add(vector);
+            }
+            if (updateIndex) {
+                this.bigPrimesIndex++;
+            }
+        }
+
+        return bSmoothVectors;
+    }
+
+    private void merge(Vector result, Vector vectorToMerge) {
+        result.vector.xor(vectorToMerge.vector);
+        BigInteger x1 = calculateX(result.position);
+        BigInteger x2 = calculateX(vectorToMerge.position);
+        result.x = x1.multiply(x2);
+        result.y = calculateY(x1).multiply(calculateY(x2));
+    }
+
+    private BigInteger calculateY(BigInteger x) {
+        return x.pow(2).subtract(number);
+    }
+
+    private BigInteger calculateX(long position) {
+        return squareRoot.add(BigInteger.valueOf(position));
     }
 }
