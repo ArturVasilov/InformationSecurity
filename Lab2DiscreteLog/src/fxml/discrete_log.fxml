@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<Pane prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.DiscreteLogController">
+
+    <TextField fx:id="textFieldA" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="624.0"
+               promptText="Discrete log base (a)"/>
+    <TextField fx:id="textFieldB" layoutX="14.0" layoutY="53.0" prefHeight="32.0" prefWidth="307.0"
+               promptText="Discrete log value (b)"/>
+    <TextField fx:id="textFieldN" layoutX="331.0" layoutY="53.0" prefHeight="32.0" prefWidth="307.0"
+               promptText="Modulus (N)"/>
+    <Button fx:id="calculateButton" layoutX="14.0" layoutY="97.0" mnemonicParsing="false" prefHeight="42.0"
+            prefWidth="624.0" text="Calculate"/>
+    <TextArea fx:id="resultTextArea" layoutX="14.0" layoutY="149.0" prefHeight="287.0" prefWidth="624.0"/>
+
+</Pane>

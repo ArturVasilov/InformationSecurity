@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="200.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MD4Controller">
+
+    <TextField fx:id="textFieldMessage" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="624.0" promptText="Message to calculate hash" />
+    <TextField fx:id="textFieldHash" layoutX="14.0" layoutY="53.0" prefHeight="32.0" prefWidth="624.0" promptText="Hash of the message" />
+    <TextField fx:id="textFieldCollision" layoutX="14.0" layoutY="92.0" prefHeight="32.0" prefWidth="624.0" promptText="Collision of the hash" />
+    <Button fx:id="calculateHashButton" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="300.0" text="Calculate hash" />
+    <Button fx:id="calculateCollisionButton" layoutX="338.0" layoutY="131.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="300.0" text="Attack hash" />
+
+</Pane>
