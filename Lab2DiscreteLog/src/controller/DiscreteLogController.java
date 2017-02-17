@@ -7,8 +7,10 @@ import javafx.scene.control.TextField;
 
 import java.math.BigInteger;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class DiscreteLogController implements Initializable {
@@ -58,6 +60,11 @@ public class DiscreteLogController implements Initializable {
             builder.append("Time spent: ").append(time).append("ms");
             resultTextArea.setText(builder.toString());
         });
+
+        System.out.println("Example for discrete log:");
+        for (int i = 0; i < 5; i++) {
+            printRandomSample();
+        }
     }
 
     private long calculateDiscreteLog(long a, long b, long n) {
@@ -77,7 +84,7 @@ public class DiscreteLogController implements Initializable {
 
                 if (smallStepValues.containsKey(largeStep)) {
                     long resultV = smallStepValues.get(largeStep);
-                    return u * m - resultV;
+                    return (u * m - resultV) % n;
                 }
             }
 
@@ -88,7 +95,7 @@ public class DiscreteLogController implements Initializable {
 
                 if (largeStepValues.containsKey(smallStep)) {
                     long resultU = largeStepValues.get(smallStep);
-                    return resultU * m - v;
+                    return (resultU * m - v) % n;
                 }
             }
         }
@@ -108,5 +115,15 @@ public class DiscreteLogController implements Initializable {
         BigInteger bigV = BigInteger.valueOf(v);
         BigInteger bigN = BigInteger.valueOf(n);
         return bigB.multiply(bigA.modPow(bigV, bigN)).mod(bigN).longValue();
+    }
+
+    private void printRandomSample() {
+        Random random = new SecureRandom();
+        int maxValue = 1_000_000;
+        int n = BigInteger.probablePrime(20, random).intValue();
+        int a = (random.nextInt(maxValue) + 1) % n;
+        int x = (random.nextInt(maxValue) + 1) % n;
+        long b = BigInteger.valueOf(a).modPow(BigInteger.valueOf(x), BigInteger.valueOf(n)).longValue();
+        System.out.println(a + "^" + x + " (mod " + n + ") = " + b);
     }
 }
