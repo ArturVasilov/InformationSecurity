@@ -7,20 +7,20 @@ import java.util.*;
  */
 public class BigPrimesList {
 
-    private final List<List<VectorData>> primes = new LinkedList<>();
-    private final Map<Long, List<VectorData>> primesHash = new HashMap<>();
+    private final List<List<Vector>> primes = new LinkedList<>();
+    private final Map<Long, List<Vector>> primesHash = new HashMap<>();
 
     private int primesFound;
 
-    public void add(long prime, VectorData bigPrime) {
-        List<VectorData> vectorDatas = primesHash.get(prime);
-        if (vectorDatas == null) {
-            vectorDatas = new LinkedList<>();
-            primesHash.put(prime, vectorDatas);
-            primes.add(vectorDatas);
+    public void add(long prime, Vector bigPrime) {
+        List<Vector> vectors = primesHash.get(prime);
+        if (vectors == null) {
+            vectors = new LinkedList<>();
+            primesHash.put(prime, vectors);
+            primes.add(vectors);
         }
-        vectorDatas.add(bigPrime);
-        if (vectorDatas.size() > 1) {
+        vectors.add(bigPrime);
+        if (vectors.size() > 1) {
             primesFound++;
         }
     }
@@ -29,9 +29,9 @@ public class BigPrimesList {
         return primesFound;
     }
 
-    public List<List<VectorData>> getBigPrimes() {
-        List<List<VectorData>> primeList = new ArrayList<>();
-        for (List<VectorData> prime : primes) {
+    public List<List<Vector>> getBigPrimes() {
+        List<List<Vector>> primeList = new ArrayList<>();
+        for (List<Vector> prime : primes) {
             if (prime.size() > 1) {
                 primeList.add(prime);
             }
