@@ -57,13 +57,18 @@ public class DiscreteLogController implements Initializable {
             long x = calculateDiscreteLog(a, b, n);
             long time = System.currentTimeMillis() - startTime;
             builder.append("x = ").append(x).append("\n");
+            if (BigInteger.valueOf(a).modPow(BigInteger.valueOf(x), BigInteger.valueOf(n)).longValue() == b) {
+                builder.append("Correct answer!\n");
+            } else {
+                builder.append("Incorrect answer :(\n");
+            }
             builder.append("Time spent: ").append(time).append("ms");
             resultTextArea.setText(builder.toString());
         });
 
         System.out.println("Example for discrete log:");
-        for (int i = 0; i < 5; i++) {
-            printRandomSample();
+        for (int i = 1; i < 6; i++) {
+            printRandomSample(i);
         }
     }
 
@@ -76,7 +81,7 @@ public class DiscreteLogController implements Initializable {
         int iterationValues = 5;
         long u = -1;
         long v = -1;
-        while (true) {
+        while (u < m || v < m) {
             for (int i = 0; i < iterationValues; i++) {
                 u++;
                 long largeStep = calculateLargeStepValue(a, u, m, n);
@@ -99,6 +104,8 @@ public class DiscreteLogController implements Initializable {
                 }
             }
         }
+
+        return 0;
     }
 
     private long calculateLargeStepValue(long a, long u, long m, long n) {
@@ -117,10 +124,10 @@ public class DiscreteLogController implements Initializable {
         return bigB.multiply(bigA.modPow(bigV, bigN)).mod(bigN).longValue();
     }
 
-    private void printRandomSample() {
+    private void printRandomSample(int index) {
         Random random = new SecureRandom();
-        int maxValue = 1_000_000;
-        int n = BigInteger.probablePrime(20, random).intValue();
+        int maxValue = (int) Math.pow(10, index);
+        int n = BigInteger.probablePrime(index * 5, random).intValue();
         int a = (random.nextInt(maxValue) + 1) % n;
         int x = (random.nextInt(maxValue) + 1) % n;
         long b = BigInteger.valueOf(a).modPow(BigInteger.valueOf(x), BigInteger.valueOf(n)).longValue();
