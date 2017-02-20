@@ -29,5 +29,6 @@
     </orderEntry>
     <orderEntry type="library" name="jdbm-2.4" level="project" />
     <orderEntry type="library" name="jdbm-2.41" level="project" />
+    <orderEntry type="library" name="jna-4.3.0" level="project" />
   </component>
 </module>

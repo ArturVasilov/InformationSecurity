@@ -13,7 +13,7 @@ public class MD4Attack {
             return localTry;
         }
         //TODO : write second-preimage attack algorithm
-        return "123456";
+        return MD4Native.findCollisionNative(hash);
     }
 
     private static String tryFindExisting(String hash) {
