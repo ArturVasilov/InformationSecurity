@@ -12,7 +12,6 @@ public class MD4Attack {
         if (localTry != null && !localTry.isEmpty()) {
             return localTry;
         }
-        //TODO : write second-preimage attack algorithm
         return MD4Native.findCollisionNative(hash);
     }
 
