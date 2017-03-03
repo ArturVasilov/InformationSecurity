@@ -1,5 +1,6 @@
 package main.md4;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 
 /**
@@ -38,7 +39,22 @@ public class MD4 extends MessageDigest {
     }
 
     public static String hash(String message) {
-        byte[] messageBytes = message.getBytes();
+        byte[] messageBytes = new byte[0];
+        try {
+            messageBytes = message.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        MessageDigest md4Digest = new MD4();
+        byte[] hashBytes = md4Digest.digest(messageBytes);
+        StringBuilder builder = new StringBuilder();
+        for (byte hashByte : hashBytes) {
+            builder.append(Integer.toHexString((hashByte & 0xFF) | 0x100).substring(1, 3));
+        }
+        return builder.toString();
+    }
+
+    public static String hash(byte[] messageBytes) {
         MessageDigest md4Digest = new MD4();
         byte[] hashBytes = md4Digest.digest(messageBytes);
         StringBuilder builder = new StringBuilder();

@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/md4_layout.fxml"));
         primaryStage.setTitle("MD4 Application");
-        primaryStage.setScene(new Scene(root, 650, 200));
+        primaryStage.setScene(new Scene(root, 650, 500));
         primaryStage.show();
     }
 

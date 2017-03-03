@@ -7,15 +7,11 @@ import utils.HashesStorage;
  */
 public class MD4Attack {
 
-    public static String findCollisionMessage(String hash) {
-        String localTry = tryFindExisting(hash);
-        if (localTry != null && !localTry.isEmpty()) {
-            return localTry;
-        }
-        return MD4Native.findCollisionNative(hash);
+    public static CollisionData findCollisions() {
+        return MD4Native.findCollisionNative();
     }
 
-    private static String tryFindExisting(String hash) {
+    public static String tryPreimageAttack(String hash) {
         try {
             HashesStorage.generateDatabaseIfNeeded();
             return HashesStorage.findValueFromHash(hash);
