@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/md4/CollisionData.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/Test.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MD4/fxml/md4_layout.fxml" afterPath="$PROJECT_DIR$/out/production/MD4/fxml/md4_layout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/MD4Controller.java" afterPath="$PROJECT_DIR$/src/controller/MD4Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fxml/md4_layout.fxml" afterPath="$PROJECT_DIR$/src/fxml/md4_layout.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/md4/MD4.java" afterPath="$PROJECT_DIR$/src/main/md4/MD4.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/md4/MD4Attack.java" afterPath="$PROJECT_DIR$/src/main/md4/MD4Attack.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/md4/MD4Native.java" afterPath="$PROJECT_DIR$/src/main/md4/MD4Native.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1080,7 +1071,7 @@
       <workItem from="1488216657967" duration="12470000" />
       <workItem from="1488303626510" duration="609000" />
       <workItem from="1488306105634" duration="2332000" />
-      <workItem from="1488558719548" duration="2967000" />
+      <workItem from="1488558719548" duration="3762000" />
     </task>
     <task id="LOCAL-00001" summary="UI and implementation for md4 algorithm">
       <created>1486933927809</created>
@@ -1124,7 +1115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487619868648</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Finished with MD4 application">
+      <created>1488573556349</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1488573556350</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1160,7 +1158,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44336000" />
+    <option name="totallyTimeSpent" value="45131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1214,7 +1212,8 @@
     <MESSAGE value="Added local passwords database" />
     <MESSAGE value="Added code to generate hashes database" />
     <MESSAGE value="Added native library for collisions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added native library for collisions" />
+    <MESSAGE value="Finished with MD4 application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished with MD4 application" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
